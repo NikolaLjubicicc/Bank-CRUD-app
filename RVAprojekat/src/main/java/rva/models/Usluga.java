@@ -1,5 +1,6 @@
 package rva.models;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import jakarta.persistence.Entity;
@@ -11,7 +12,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 
 @Entity
-public class Usluga {
+public class Usluga implements Serializable{
 	@Id
 	@SequenceGenerator(name="USLUGA_SEQ_GENERATOR",sequenceName="USLUGA_SEQ",allocationSize=1)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="USLUGA_SEQ_GENERATOR")

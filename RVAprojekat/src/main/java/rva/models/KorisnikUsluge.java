@@ -13,8 +13,8 @@ import jakarta.persistence.SequenceGenerator;
 @Entity
 public class KorisnikUsluge implements Serializable{
 	@Id
-	@SequenceGenerator(name="KORISNIKUSLUGE_SEQ_GENERATOR",sequenceName="KORISNIKUSLUGE_SEQ",allocationSize=1)
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="KORISNIKUSLUGE_SEQ_GENERATOR")
+	@SequenceGenerator(name="KORISNIK_USLUGE_SEQ_GENERATOR",sequenceName="KORISNIK_USLUGE_SEQ",allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="KORISNIK_USLUGE_SEQ_GENERATOR")
 	private int id;
 	private String ime;
 	private String prezime;

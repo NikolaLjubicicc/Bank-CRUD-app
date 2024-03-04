@@ -26,7 +26,7 @@ public class Filijala implements Serializable{
 	private List<Usluga> usluga;
 	
 	@ManyToOne
-	@JoinColumn(name = "dobavljac")
+	@JoinColumn(name = "banka")
 	private Banka banka;
 	
 	public Filijala() {
