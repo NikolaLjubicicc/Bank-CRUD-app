@@ -1,4 +1,4 @@
-package rvarepository;
+package rva.repository;
 
 import java.util.List;
 
@@ -9,5 +9,5 @@ import rva.models.KorisnikUsluge;
 
 @Repository
 public interface KorisnikUslugeRepository  extends JpaRepository<KorisnikUsluge, Integer>{
-	List<KorisnikUsluge> findByMaticniBrojContainingIngoreCase(String maticni_broj);
+	List<KorisnikUsluge> findByMaticniBrojContainingIgnoreCase(String maticniBroj);
 }

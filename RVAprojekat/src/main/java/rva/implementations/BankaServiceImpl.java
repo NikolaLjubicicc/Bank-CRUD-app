@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import rva.models.Banka;
-import rvarepository.BankaRepository;
-import services.BankaService;
+import rva.repository.BankaRepository;
+import rva.services.BankaService;
 @Component
 public class BankaServiceImpl implements BankaService {
 	@Autowired
@@ -23,6 +23,10 @@ public class BankaServiceImpl implements BankaService {
 	public boolean existsById(int id) {
 		return repo.existsById(id);
 	}
+	@Override
+	public Optional<Banka> findById(int id){
+		return repo.findById(id);
+	}
 
 	@Override
 	public Banka create(Banka t) {
@@ -32,6 +36,7 @@ public class BankaServiceImpl implements BankaService {
 	@Override
 	public Optional<Banka> update(Banka t, int id) {
 		if(existsById(id)) {
+				t.setId(id);
 				return Optional.of(repo.save(t));
 		}
 		return Optional.empty();
@@ -45,7 +50,7 @@ public class BankaServiceImpl implements BankaService {
 
 	@Override
 	public List<Banka> getBankabyNaziv(String naziv) {
-		return repo.findByNazivContainingIngoreCase(naziv);
+		return repo.findByNazivContainingIgnoreCase(naziv);
 	}
 
 }

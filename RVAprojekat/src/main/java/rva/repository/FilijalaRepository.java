@@ -1,4 +1,4 @@
-package rvarepository;
+package rva.repository;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import rva.models.Banka;
 import rva.models.Filijala;
 @Repository
 public interface FilijalaRepository  extends JpaRepository<Filijala, Integer>{
-	List<Filijala> findByPosedujeSefEquals(boolean poseduje_sef);
+	List<Filijala> findByPosedujeSefEquals(boolean posedujeSef);
 	
 	List<Filijala> findByBanka(Banka banka);
 }

@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 
 import rva.models.Banka;
 import rva.models.Filijala;
-import rvarepository.FilijalaRepository;
-import services.FilijalaService;
+import rva.repository.FilijalaRepository;
+import rva.services.FilijalaService;
 @Component
 public class FilijalaServiceImpl implements FilijalaService {
 	@Autowired
@@ -24,7 +24,10 @@ public class FilijalaServiceImpl implements FilijalaService {
 	public boolean existsById(int id) {
 		return repo.existsById(id);
 	}
-
+	
+	public Optional<Filijala> findById(int id){
+		return repo.findById(id);
+	}
 	@Override
 	public Filijala create(Filijala t) {
 		return repo.save(t);
@@ -33,6 +36,7 @@ public class FilijalaServiceImpl implements FilijalaService {
 	@Override
 	public Optional<Filijala> update(Filijala t, int id) {
 		if(existsById(id)) {
+			t.setId(id);
 			return Optional.of(repo.save(t));
 	}
 	return Optional.empty();
@@ -45,8 +49,8 @@ public class FilijalaServiceImpl implements FilijalaService {
 	}
 
 	@Override
-	public List<Filijala> getFilijalabyPosedujeSef(boolean poseduje_sef) {
-		return repo.findByPosedujeSefEquals(poseduje_sef);
+	public List<Filijala> getFilijalabyPosedujeSef(boolean posedujeSef) {
+		return repo.findByPosedujeSefEquals(posedujeSef);
 	}
 
 	@Override

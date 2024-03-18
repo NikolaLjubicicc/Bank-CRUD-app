@@ -3,6 +3,8 @@ package rva.models;
 import java.io.Serializable;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,25 +21,26 @@ public class Filijala implements Serializable{
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="FILIJALA_SEQ_GENERATOR")
 	private int id;
 	private String adresa;
-	private int broj_pultova;
-	private Boolean poseduje_sef;
+	private int brojPultova;
+	private Boolean posedujeSef;
 	
 	@OneToMany(mappedBy = "filijala")
 	private List<Usluga> usluga;
 	
 	@ManyToOne
+	@JsonIgnore
 	@JoinColumn(name = "banka")
 	private Banka banka;
 	
 	public Filijala() {
 		
 	}
-	public Filijala(int id, String adresa, int broj_pultova, Boolean poseduje_sef) {
+	public Filijala(int id, String adresa, int brojPultova, Boolean posedujeSef) {
 		super();
 		this.id = id;
 		this.adresa = adresa;
-		this.broj_pultova = broj_pultova;
-		this.poseduje_sef = poseduje_sef;
+		this.brojPultova = brojPultova;
+		this.posedujeSef = posedujeSef;
 	}
 	public int getId() {
 		return id;
@@ -52,16 +55,16 @@ public class Filijala implements Serializable{
 		this.adresa = adresa;
 	}
 	public int getBroj_pultova() {
-		return broj_pultova;
+		return brojPultova;
 	}
-	public void setBroj_pultova(int broj_pultova) {
-		this.broj_pultova = broj_pultova;
+	public void setBrojPultova(int brojPultova) {
+		this.brojPultova = brojPultova;
 	}
 	public Boolean getPoseduje_sef() {
-		return poseduje_sef;
+		return posedujeSef;
 	}
-	public void setPoseduje_sef(Boolean poseduje_sef) {
-		this.poseduje_sef = poseduje_sef;
+	public void setPosedujeSef(Boolean posedujeSef) {
+		this.posedujeSef = posedujeSef;
 	}
 
 	

@@ -3,6 +3,7 @@ package rva.models;
 import java.io.Serializable;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,7 +23,7 @@ public class Banka implements Serializable{
 	private String naziv;
 	private String kontakt;
 	private int pib;
-	@OneToMany(mappedBy = "banka")
+	@OneToMany(mappedBy = "banka", cascade = CascadeType.REMOVE)
 	private List<Filijala> filijala;
 	
 	

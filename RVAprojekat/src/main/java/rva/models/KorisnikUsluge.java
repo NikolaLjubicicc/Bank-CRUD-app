@@ -3,6 +3,7 @@ package rva.models;
 import java.io.Serializable;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,20 +19,20 @@ public class KorisnikUsluge implements Serializable{
 	private int id;
 	private String ime;
 	private String prezime;
-	private String maticni_broj;
+	private String maticniBroj;
 	
-	@OneToMany(mappedBy = "korisnik")
+	@OneToMany(mappedBy = "korisnikusluge", cascade = CascadeType.REMOVE)
 	private List<Usluga> usluga;
 	
 	public KorisnikUsluge() {
 		
 	}
-	public KorisnikUsluge(int id, String ime, String prezime, String maticni_broj) {
+	public KorisnikUsluge(int id, String ime, String prezime, String maticniBroj) {
 		super();
 		this.id = id;
 		this.ime = ime;
 		this.prezime = prezime;
-		this.maticni_broj = maticni_broj;
+		this.maticniBroj = maticniBroj;
 	}
 	public int getId() {
 		return id;
@@ -51,11 +52,11 @@ public class KorisnikUsluge implements Serializable{
 	public void setPrezime(String prezime) {
 		this.prezime = prezime;
 	}
-	public String getMaticni_broj() {
-		return maticni_broj;
+	public String getMaticniBroj() {
+		return maticniBroj;
 	}
-	public void setMaticni_broj(String maticni_broj) {
-		this.maticni_broj = maticni_broj;
+	public void setMaticniBroj(String maticniBroj) {
+		this.maticniBroj = maticniBroj;
 	}
 
 	

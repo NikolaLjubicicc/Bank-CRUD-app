@@ -1,4 +1,4 @@
-package rvarepository;
+package rva.repository;
 
 import java.util.List;
 
@@ -9,5 +9,5 @@ import rva.models.Banka;
 @Repository
 public interface BankaRepository extends JpaRepository<Banka, Integer>{
 	
-	List<Banka> findByNazivContainingIngoreCase(String naziv);
+	List<Banka> findByNazivContainingIgnoreCase(String naziv);
 }

@@ -1,4 +1,4 @@
-package rvarepository;
+package rva.repository;
 
 import java.util.List;
 
@@ -11,8 +11,8 @@ import rva.models.Usluga;
 
 @Repository
 public interface UslugaRepository extends JpaRepository<Usluga, Integer>{
-	List<Usluga> findByProvizijaLessThanOrderByDesc(double provizija);
+	List<Usluga> findByProvizijaLessThanOrderByProvizijaDesc(double provizija);
 	
 	List<Usluga> findByFilijala(Filijala filijala);
-	List<Usluga> findByKorisnikUsluge(KorisnikUsluge korisnik);
+	List<Usluga> findByKorisnikusluge(KorisnikUsluge korisnik);
 }
