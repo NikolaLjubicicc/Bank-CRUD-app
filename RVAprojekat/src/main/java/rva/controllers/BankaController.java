@@ -20,6 +20,7 @@ import rva.services.BankaService;
 @RestController
 public class BankaController {
 	private BankaService service;
+	
 	@GetMapping("/banka")
 	public List<Banka> getAllBankas(){
 		return service.getAll();
@@ -31,7 +32,7 @@ public class BankaController {
 		if(banka.isPresent()) {
 			return ResponseEntity.ok(banka.get());
 		}
-		return ResponseEntity.status(404).body("Resource with requested ID: "+id+" dpes not exist");
+		return ResponseEntity.status(404).body("Resource with requested ID: "+id+" does not exist");
 	}
 	
 	@GetMapping("/banka/naziv/{naziv}")
@@ -46,7 +47,7 @@ public class BankaController {
 	@PostMapping("/banka")
 	public ResponseEntity<?> createBanka(@RequestBody Banka banka){
 		if(service.existsById(banka.getId())) {
-			return ResponseEntity.status(409).body("Resource with inserted valudes "+"alredy exists");
+			return ResponseEntity.status(409).body("Resource with inserted values "+"alredy exists");
 		}
 		Banka savedBanka = service.create(banka);
 		URI uri = URI.create("/banka/"+savedBanka.getId());
