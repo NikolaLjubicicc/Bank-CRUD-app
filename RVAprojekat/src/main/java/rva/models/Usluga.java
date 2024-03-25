@@ -25,12 +25,10 @@ public class Usluga implements Serializable{
 	private double provizija;
 	
 	@ManyToOne
-	@JsonIgnore
 	@JoinColumn(name = "filijala")
 	private Filijala filijala;
 	
 	@ManyToOne
-	@JsonIgnore
 	@JoinColumn(name = "korisnik")
 	private KorisnikUsluge korisnikusluge;
 	

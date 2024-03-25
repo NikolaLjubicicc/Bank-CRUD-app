@@ -25,10 +25,10 @@ public class Filijala implements Serializable{
 	private Boolean posedujeSef;
 	
 	@OneToMany(mappedBy = "filijala")
+	@JsonIgnore
 	private List<Usluga> usluga;
 	
 	@ManyToOne
-	@JsonIgnore
 	@JoinColumn(name = "banka")
 	private Banka banka;
 	

@@ -5,6 +5,7 @@ import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,6 +26,7 @@ import rva.services.UslugaService;
 
 @RestController
 public class UslugaController {
+	@Autowired
 	private UslugaService service;
 	private KorisnikUslugeService korisnikUslugeService;
 	private FilijalaService filijalaService;
@@ -92,7 +94,7 @@ public class UslugaController {
 				return ResponseEntity.status(404).body("Resource with requested foreign key:"+foreignKey+"do not exist");
 			}
 		}
-		return ResponseEntity.status(404).body("Foreign key: " + foreignKey + " does not exist");
+		return ResponseEntity.status(400).body("Foreign key: " + foreignKey + " does not exist");
 	}
 	@GetMapping("usluga/korisnikusluge/{foreignKey}")
 	public ResponseEntity<?> getUslugaByKorisnikUsluge(@PathVariable int foreignKey){
@@ -105,7 +107,7 @@ public class UslugaController {
 				return ResponseEntity.status(404).body("Resource with requested foreign key:"+foreignKey+"do not exist");
 			}
 		}
-		return ResponseEntity.status(404).body("Foreign key: " + foreignKey + " does not exist");
+		return ResponseEntity.status(400).body("Foreign key: " + foreignKey + " does not exist");
 	}
 	
 }

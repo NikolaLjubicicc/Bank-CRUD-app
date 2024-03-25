@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -19,6 +20,8 @@ import rva.services.BankaService;
 
 @RestController
 public class BankaController {
+	
+	@Autowired
 	private BankaService service;
 	
 	@GetMapping("/banka")
@@ -26,7 +29,7 @@ public class BankaController {
 		return service.getAll();
 	}
 	
-	@GetMapping("/banka/id/(id)")
+	@GetMapping("/banka/id/{id}")
 	public ResponseEntity<?> getBankaById(@PathVariable int id){
 		Optional<Banka> banka = service.findById(id);
 		if(banka.isPresent()) {
@@ -54,7 +57,7 @@ public class BankaController {
 		return ResponseEntity.created(uri).body(savedBanka);
 	}
 	
-	@PutMapping("/banka/id/(id)")
+	@PutMapping("/banka/id/{id}")
 	public ResponseEntity<?> updateBanka(@RequestBody Banka banka, @PathVariable int id){
 		Optional<Banka> updatedBanka = service.update(banka, id);
 		if(updatedBanka.isPresent()) {
@@ -63,7 +66,7 @@ public class BankaController {
 		return ResponseEntity.status(404).body("Resource with requested ID: "+id+" cannot be updated as it doesnt exist");
 	}
 	
-	@DeleteMapping("/banka/id/(id)")
+	@DeleteMapping("/banka/id/{id}")
 	public ResponseEntity<?> deleteBanka(@PathVariable int id){
 		if(service.existsById(id)) {
 			service.delete(id);

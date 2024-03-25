@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,13 +21,14 @@ import rva.services.KorisnikUslugeService;
 
 @RestController
 public class KorisnikUslugeController {
+	@Autowired
 	private KorisnikUslugeService service;
 
 	@GetMapping("/korisnikusluge")
 	public List<KorisnikUsluge> getAllKorisnikUsluge(){
 		return service.getAll();
 	}
-	@GetMapping("/korisnikusluge/id/(id)")
+	@GetMapping("/korisnikusluge/id/{id}")
 	public ResponseEntity<?> getKorisnikUslugeById(@PathVariable int id){
 		Optional<KorisnikUsluge> korisnikusluge = service.findById(id);
 		if(korisnikusluge.isPresent()) {
@@ -54,7 +56,7 @@ public class KorisnikUslugeController {
 		return ResponseEntity.created(uri).body(savedKorisnikUsluge);
 	}
 
-	 @PutMapping("/korisnikusluge/id/(id)")
+	 @PutMapping("/korisnikusluge/id/{id}")
 	 public ResponseEntity<?> updateKorisnikUsluge(@RequestBody KorisnikUsluge korisnikusluge, @PathVariable int id){
 		 Optional<KorisnikUsluge> updatedKorisnikUsluge = service.update(korisnikusluge, id);
 		 if(updatedKorisnikUsluge.isPresent()) {
@@ -63,12 +65,12 @@ public class KorisnikUslugeController {
 		 return ResponseEntity.status(404).body("Resource with requested ID: "+id+" cannot be updated as it doesnt exist");
 	 }
 
-	 @DeleteMapping("/korisnikusluge/id/(id)")
+	 @DeleteMapping("/korisnikusluge/id/{id}")
 	 public ResponseEntity<?> deleteKorisnikUsluge(@PathVariable int id){
 		 if(service.existsById(id)) {
 				service.delete(id);
 				return ResponseEntity.ok("Resource with ID: "+id+" has been succesfully deleted");
 	     }
-		 return ResponseEntity.status(404).body("Resource with ID: "+id+" cannot be deleted as it doesnt exist");
+		 return ResponseEntity.status(400).body("Resource with ID: "+id+" cannot be deleted as it doesnt exist");
     }
 }
