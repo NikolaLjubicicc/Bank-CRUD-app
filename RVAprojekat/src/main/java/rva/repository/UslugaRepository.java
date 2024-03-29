@@ -11,7 +11,7 @@ import rva.models.Usluga;
 
 @Repository
 public interface UslugaRepository extends JpaRepository<Usluga, Integer>{
-	List<Usluga> findByProvizijaLessThanOrderByProvizijaDesc(double provizija);
+	List<Usluga> findByProvizijaGreaterThanOrderByProvizijaAsc(double provizija);
 	
 	List<Usluga> findByFilijala(Filijala filijala);
 	List<Usluga> findByKorisnikusluge(KorisnikUsluge korisnik);

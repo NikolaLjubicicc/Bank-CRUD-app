@@ -24,6 +24,7 @@ import rva.services.FilijalaService;
 public class FilijalaController {
 	@Autowired
 	private FilijalaService service;
+	@Autowired
 	private BankaService bankaService;
 	
 	
@@ -34,7 +35,7 @@ public class FilijalaController {
 		return service.getAll();
 	}
 	
-	@GetMapping("/filijala/id/(id)")
+	@GetMapping("/filijala/id/{id}")
 	public ResponseEntity<?> getFilijalaById(@PathVariable int id){
 		Optional<Filijala> filijala = service.findById(id);
 		if(filijala.isPresent()) {
@@ -43,7 +44,7 @@ public class FilijalaController {
 		return ResponseEntity.status(404).body("Resource with requested ID: "+id+" does not exist");
 	}
 	
-	@GetMapping("/filijala/posedujeSef/(posedujeSef)")
+	@GetMapping("/filijala/posedujeSef/{posedujeSef}")
 	public ResponseEntity<?> getFilijalaByPosedujeSef(@PathVariable boolean posedujeSef){
 		List<Filijala> filijala = service.getFilijalabyPosedujeSef(posedujeSef);
 		if(filijala.isEmpty()) {
@@ -62,7 +63,7 @@ public class FilijalaController {
 		return ResponseEntity.created(uri).body(savedFilijala);
 	}
 	
-	@PutMapping("/filijala/id/(id)")
+	@PutMapping("/filijala/id/{id}")
 	public ResponseEntity<?> updateFilijala(@RequestBody Filijala filijala, @PathVariable int id) {
 		Optional<Filijala> updatedFilijala = service.update(filijala, id);
 		if(updatedFilijala.isPresent()) {
@@ -71,7 +72,7 @@ public class FilijalaController {
 		return ResponseEntity.status(404).body("Resource with requested ID: "+id+" cannot be updated as it doesnt exist");
 	}
 	
-	@DeleteMapping("/filijala/id/(id)")
+	@DeleteMapping("/filijala/id/{id}")
 	public ResponseEntity<?> deleteFilijala(@PathVariable int id){
 		if(service.existsById(id)) {
 			service.delete(id);

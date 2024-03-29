@@ -45,12 +45,11 @@ class BankaControllerIntegrationTest {
 	@Test
 	@Order(1)
 	void testGetAllBankas() {
-		ResponseEntity<List<Banka>> response = template.exchange("/banka", HttpMethod.GET, null, new ParameterizedTypeReference<List<Banka>>() {});
+	ResponseEntity<List<Banka>> response = template.exchange("/banka", HttpMethod.GET, null, new ParameterizedTypeReference<List<Banka>>() {});
 		
 	int statusCode = response.getStatusCode().value();
 	List<Banka> banka = response.getBody();
 	
-	//Test
 	assertEquals(200, statusCode);
 	assertTrue(!banka.isEmpty());
 	}
@@ -88,6 +87,7 @@ class BankaControllerIntegrationTest {
 		Banka banka = new Banka();
 		banka.setNaziv("POST test");
 		banka.setKontakt("Post kontakt");
+		banka.setPib(1234);
 		
 		HttpEntity<Banka> entity = new HttpEntity<Banka>(banka);
 		createHighestId();
@@ -101,6 +101,7 @@ class BankaControllerIntegrationTest {
 		assertEquals(highestId,createdBanka.getId());
 		assertEquals(banka.getNaziv(),createdBanka.getNaziv());
 		assertEquals(banka.getKontakt(),createdBanka.getKontakt());
+		assertEquals(banka.getPib(),createdBanka.getPib());
 		assertEquals("/banka/"+highestId,response.getHeaders().getLocation().getPath());
 	}
 	@Test
@@ -109,6 +110,7 @@ class BankaControllerIntegrationTest {
 		Banka banka = new Banka();
 		banka.setNaziv("PUT test");
 		banka.setKontakt("PUT kontakt");
+		banka.setPib(1234);
 		
 		HttpEntity<Banka> entity = new HttpEntity<Banka>(banka);
 		getHighestId();
@@ -122,6 +124,7 @@ class BankaControllerIntegrationTest {
 		assertEquals(highestId,updatedBanka.getId());
 		assertEquals(banka.getNaziv(),updatedBanka.getNaziv());
 		assertEquals(banka.getKontakt(),updatedBanka.getKontakt());
+		assertEquals(banka.getPib(),updatedBanka.getPib());
 	}
 	@Test
 	@Order(6)

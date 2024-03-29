@@ -28,7 +28,9 @@ import rva.services.UslugaService;
 public class UslugaController {
 	@Autowired
 	private UslugaService service;
+	@Autowired
 	private KorisnikUslugeService korisnikUslugeService;
+	@Autowired
 	private FilijalaService filijalaService;
 
 	@GetMapping("/usluga")
@@ -36,7 +38,7 @@ public class UslugaController {
 		return service.getAll();
 	}
 	
-	@GetMapping("/usluga/id/(id)")
+	@GetMapping("/usluga/id/{id}")
 	public ResponseEntity<?> getUslugaById(@PathVariable int id){
 		Optional<Usluga> usluga = service.findById(id);
 		if(usluga.isPresent()) {
@@ -45,7 +47,7 @@ public class UslugaController {
 		return ResponseEntity.status(404).body("Resource with requested ID: "+id+" does not exist");
 	}
 	
-	@GetMapping("/usluga/provizija/(provizija)")
+	@GetMapping("/usluga/provizija/{provizija}")
 	public ResponseEntity<?> getUslugaByProvizija(@PathVariable double provizija){
 		List<Usluga> usluga = service.getUslugabyProvizija(provizija);
 		if(usluga.isEmpty()) {
@@ -64,7 +66,7 @@ public class UslugaController {
 		return ResponseEntity.created(uri).body(savedUsluga);
 	}
 
-	@PutMapping("/usluga/id/(id)")
+	@PutMapping("/usluga/id/{id}")
 	public ResponseEntity<?> updateUsluga(@RequestBody Usluga usluga, @PathVariable int id){
 		Optional<Usluga> updatedUsluga = service.update(usluga, id);
 		if(updatedUsluga.isPresent())
@@ -74,7 +76,7 @@ public class UslugaController {
 		return ResponseEntity.status(404).body("Resource with requested ID: "+id+" cannot be updated as it doesnt exist");
 	}
 
-	@DeleteMapping("/usluga/id/(id)")
+	@DeleteMapping("/usluga/id/{id}")
 	public ResponseEntity<?> deleteUsluga(@PathVariable int id){
 		if(service.existsById(id)) {
 			service.delete(id);

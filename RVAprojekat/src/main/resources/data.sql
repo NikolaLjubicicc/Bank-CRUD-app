@@ -20,4 +20,4 @@ insert into usluga(id,filijala,korisnik,naziv,opis_usluge,datum_ugovora,provizij
 values(nextval('usluga_seq'),1,1,'izdavanje kartice','izdavanje kartice klijentu',to_date('09.03.2022.','dd.mm.yyyy.'),45),
       (nextval('usluga_seq'),2,2,'otvaranje racuna','otvaranje racuna klijentu',to_date('01.03.2024.','dd.mm.yyyy.'),1),
       (nextval('usluga_seq'),3,3,'kredit','odobravanje kredita',to_date('20.07.2024.','dd.mm.yyyy.'),50),
-      (nextval('usluga_seq'),4,4,'dozvoljeni minus','odobravanje dozvoljenog minusa',to_date('24.09.2023.','dd.mm.yyyy.'),50);
+      (nextval('usluga_seq'),4,4,'dozvoljeni minus','odobravanje dozvoljenog minusa',to_date('24.09.2023.','dd.mm.yyyy.'),55);

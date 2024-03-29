@@ -15,6 +15,7 @@ import jakarta.persistence.SequenceGenerator;
 
 @Entity
 public class Usluga implements Serializable{
+	private static final long serialVersionUID = 1L;
 	@Id
 	@SequenceGenerator(name="USLUGA_SEQ_GENERATOR",sequenceName="USLUGA_SEQ",allocationSize=1)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="USLUGA_SEQ_GENERATOR")
@@ -73,6 +74,18 @@ public class Usluga implements Serializable{
 	}
 	public void setProvizija(double provizija) {
 		this.provizija = provizija;
+	}
+	public Filijala getFilijala() {
+		return filijala;
+	}
+	public void setFilijala(Filijala filijala) {
+		this.filijala = filijala;
+	}
+	public KorisnikUsluge getKorisnikUsluge() {
+		return korisnikusluge;
+	}
+	public void setKorisnikUsluge(KorisnikUsluge korisnikusluge) {
+		this.korisnikusluge = korisnikusluge;
 	}
 
 

@@ -54,7 +54,7 @@ public class UslugaServiceImpl implements UslugaService {
 
 	@Override
 	public List<Usluga> getUslugabyProvizija(double provizija) {
-		return repo.findByProvizijaLessThanOrderByProvizijaDesc(provizija);
+		return repo.findByProvizijaGreaterThanOrderByProvizijaAsc(provizija);
 	}
 
 	@Override

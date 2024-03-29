@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,6 +17,8 @@ import jakarta.persistence.SequenceGenerator;
 
 @Entity
 public class Filijala implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	@Id
 	@SequenceGenerator(name="FILIJALA_SEQ_GENERATOR",sequenceName="FILIJALA_SEQ",allocationSize=1)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="FILIJALA_SEQ_GENERATOR")
@@ -24,7 +27,7 @@ public class Filijala implements Serializable{
 	private int brojPultova;
 	private Boolean posedujeSef;
 	
-	@OneToMany(mappedBy = "filijala")
+	@OneToMany(mappedBy = "filijala", cascade = CascadeType.REMOVE)
 	@JsonIgnore
 	private List<Usluga> usluga;
 	
@@ -54,17 +57,23 @@ public class Filijala implements Serializable{
 	public void setAdresa(String adresa) {
 		this.adresa = adresa;
 	}
-	public int getBroj_pultova() {
+	public int getBrojPultova() {
 		return brojPultova;
 	}
 	public void setBrojPultova(int brojPultova) {
 		this.brojPultova = brojPultova;
 	}
-	public Boolean getPoseduje_sef() {
+	public Boolean getPosedujeSef() {
 		return posedujeSef;
 	}
 	public void setPosedujeSef(Boolean posedujeSef) {
 		this.posedujeSef = posedujeSef;
+	}
+	public Banka getBanka() {
+		return banka;
+	}
+	public void setBanka(Banka banka) {
+		this.banka = banka;
 	}
 
 	
