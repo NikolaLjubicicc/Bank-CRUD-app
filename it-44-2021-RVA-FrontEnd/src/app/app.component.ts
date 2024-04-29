@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'it-40-2021-RVA-FrontEnd';
+  title = 'it-44-2021-RVA-FrontEnd';
 }
