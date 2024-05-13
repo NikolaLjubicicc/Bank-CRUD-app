@@ -1,0 +1,35 @@
+<div class="container">
+    <h3 mat-dialog-title *ngIf="flag == 1">Dodavanje usluge</h3>
+    <h3 mat-dialog-title *ngIf="flag == 2">Ažuriranje usluge: {{data.id}}</h3>
+    <h3 mat-dialog-title *ngIf="flag == 3">Brisanje usluge: {{data.id}}</h3>
+
+    <form class="mat-dialog-content" #formControl="ngForm">
+       <div class="form">
+        <mat-form-field>
+            <input {matDatepicker}="datumKreiranja" matInput placeholder="datumUgovora" name="datumUgovora" [disabled]="flag==3" [(ngModel)]="data.datumUgovora" required />
+            <mat-datepicker-toggle matSufix {for}="datumKreiranja"></mat-datepicker-toggle>
+            <mat-datepicker #datumKreiranja></mat-datepicker>
+        </mat-form-field>
+       </div>
+
+       <div class="form">
+        <mat-form-field>
+            <input matInput placeholder="Kontakt" name="Kontakt" [disabled]="flag==3" [(ngModel)]="data.kontakt" required />
+        </mat-form-field>
+       </div>
+
+       <div class="form">
+        <mat-form-field>
+            <input matInput placeholder="PIB" name="PIB" [disabled]="flag==3" [(ngModel)]="data.pib" required />
+        </mat-form-field>
+       </div>
+
+    </form>
+
+    <div class="mat-dialog-actions">
+        <button matButton *ngIf="flag == 1" type="submit" mat-dialog-close="1" [disabled]="!formControl.valid" (click)="add()">Sačuvaj</button>
+        <button matButton *ngIf="flag == 2" type="submit" mat-dialog-close="1" [disabled]="!formControl.valid" (click)="update()">Modifikuj</button>
+        <button matButton *ngIf="flag == 3" mat-dialog-close="1" (click)="delete()">Obriši</button>
+        <button matButton (click)="cancel()">Poništi</button>
+    </div>
+</div>
