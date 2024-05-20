@@ -19,10 +19,10 @@ export class BankaDialogComponent {
     public service:BankaService
   ){}
 
-  public add(){
+  public addBanka(){
     this.service.addBanka(this.data).subscribe(
       (data) => {
-        this.snackBar.open(`Uspesno dodata banka sa nazivom: $(this.data.naziv)`,`U redu`,{duration:2500});
+        this.snackBar.open(`Uspesno dodata banka sa nazivom: ${this.data.naziv}`,`U redu`,{duration:2500});
       }
     ),
     (error:Error) => {
@@ -31,10 +31,10 @@ export class BankaDialogComponent {
     }
 
   }
-  public update(){
+  public updateBanka(){
     this.service.updateBanka(this.data).subscribe(
       (data) => {
-        this.snackBar.open(`Uspesno azurirana banka sa nazivom: $(this.data.naziv)`,`U redu`,{duration:2500});
+        this.snackBar.open(`Uspesno azurirana banka sa nazivom: ${this.data.naziv}`,`U redu`,{duration:2500});
       }
     ),
     (error:Error) => {
@@ -42,10 +42,10 @@ export class BankaDialogComponent {
       this.snackBar.open(`Neuspenso azuriranje`, `Zatvori`, {duration:1000});
     }
   }
-  public delete(){
+  public deleteBanka(){
     this.service.deleteBanka(this.data.id).subscribe(
       (data) => {
-        this.snackBar.open(`$(data)`,`U redu`,{duration:2500});
+        this.snackBar.open(`${data}`,`U redu`,{duration:2500});
       }
     ),
     (error:Error) => {

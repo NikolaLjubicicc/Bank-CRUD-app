@@ -6,38 +6,39 @@
   <div class="container mat-elavation-z8">
     <mat-table [dataSource]="dataSource" class="mat-cell">
       <!--ID-->
-      <ng-container matColumnDef="naziv">
-        <mat-header-cell *matHeaderCellDef>NAZIV</mat-header-cell>
-        <mat-cell *matCellDef="let row">{{ row.naziv }}</mat-cell>
-      </ng-container>
-      <!--Naziv-->
       <ng-container matColumnDef="id">
         <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
         <mat-cell *matCellDef="let row">{{ row.id }}</mat-cell>
       </ng-container>
-      <!-- Kontakt -->
+      
+      <!--Naziv-->
+      <ng-container matColumnDef="naziv">
+        <mat-header-cell *matHeaderCellDef>NAZIV</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.naziv }}</mat-cell>
+      </ng-container>
+      
       <ng-container matColumnDef="datumUgovora">
-        <mat-header-cell *matHeaderCellDef>datumUgovora</mat-header-cell>
-        <mat-cell *matCellDef="let row">{{ row.datumUgovora }}</mat-cell>
+        <mat-header-cell *matHeaderCellDef>Datum ugovora</mat-header-cell>
+        <mat-cell *matCellDef="let row">  {{row.datumUgovora | date:'dd.MM.yyyy'}} </mat-cell>
       </ng-container>
       <ng-container matColumnDef="opisUsluge">
-        <mat-header-cell *matHeaderCellDef>opisUsluge</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef>Opis usluge</mat-header-cell>
         <mat-cell *matCellDef="let row">{{ row.opisUsluge }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="provizija">
-        <mat-header-cell *matHeaderCellDef>provizija</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef>Provizija</mat-header-cell>
         <mat-cell *matCellDef="let row">{{ row.provizija }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="korisnikusluge">
-        <mat-header-cell *matHeaderCellDef>korisnikusluge</mat-header-cell>
-        <mat-cell *matCellDef="let row">{{ row.korisnikusluge.naziv }}</mat-cell>
+        <mat-header-cell *matHeaderCellDef>Korisnik usluge</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.korisnikusluge?.maticniBroj }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="filijala">
-        <mat-header-cell *matHeaderCellDef>filijala</mat-header-cell>
-        <mat-cell *matCellDef="let row">{{ row.filijala.naziv }}</mat-cell>
+        <mat-header-cell *matHeaderCellDef>Filijala</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.filijala.adresa }}</mat-cell>
       </ng-container>
       <!-- Action Buttons -->
       <ng-container matColumnDef="actions">
@@ -47,10 +48,10 @@
           </button>
         </mat-header-cell>
         <mat-cell *matCellDef="let row; let i = index">
-          <button mat-icon-button color="primary" (click)="openDialog(2,row.id,row.naziv,row.kontakt,row.pib)">
+          <button mat-icon-button color="primary" (click)="openDialog(2,row.id,row.naziv,row.opisUsluge,row.datumUgovora,row.provizija,row.korisnikusluge,row.filijala)">
             <mat-icon color="primary" aria-label="Edit" >edit</mat-icon>
           </button>
-          <button mat-icon-button color="primary" (click)="openDialog(3,row.id,row.naziv,row.kontakt,row.pib)">
+          <button mat-icon-button color="primary" (click)="openDialog(3,row.id,row.naziv,row.opisUsluge,row.datumUgovora,row.provizija,row.korisnikusluge,row.filijala)">
             <mat-icon color= "warn" aria-label="Delete">delete</mat-icon>
           </button>
         </mat-cell>

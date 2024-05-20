@@ -20,7 +20,7 @@ export class BankaService {
   }
   
   public updateBanka(banka:Banka):Observable<any>{
-    return this.httpClient.put(`${BANKA_URL}/id/$(banka.id}`,banka);
+    return this.httpClient.put(`${BANKA_URL}/id/${banka.id}`,banka);
   }
 
   public deleteBanka(bankaId:number):Observable<any>{

@@ -20,7 +20,7 @@ export class KorisnikUslugeService {
   }
   
   public updateKorisnikUsluge(korisnikusluge:KorisnikUsluge):Observable<any>{
-    return this.httpClient.put(`${KORISNIKUSLUGE_URL}/id/$(korisnikusluge.id}`,korisnikusluge);
+    return this.httpClient.put(`${KORISNIKUSLUGE_URL}/id/${korisnikusluge.id}`,korisnikusluge);
   }
 
   public deleteKorisnikUsluge(korisnikuslugeId:number):Observable<any>{

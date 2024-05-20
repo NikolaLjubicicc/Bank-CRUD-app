@@ -20,7 +20,7 @@ export class UslugaService {
   }
   
   public updateUsluga(usluga:Usluga):Observable<any>{
-    return this.httpClient.put(`${USLUGA_URL}/id/$(usluga.id}`,usluga);
+    return this.httpClient.put(`${USLUGA_URL}/id/${usluga.id}`,usluga);
   }
 
   public deleteUsluga(uslugaId:number):Observable<any>{

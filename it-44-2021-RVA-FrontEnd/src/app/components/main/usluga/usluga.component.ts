@@ -15,7 +15,7 @@ import { UslugaDialogComponent } from '../../dialogs/usluga-dialog/usluga-dialog
   styleUrls: ['./usluga.component.css']
 })
 export class UslugaComponent implements OnInit,OnDestroy{
-  displayedColumns = ['id','naziv','opisUsluge','datumUgovora','provizija','actions'];
+  displayedColumns = ['id','naziv','opisUsluge','datumUgovora','provizija','korisnikusluge','filijala','actions'];
   dataSource!: MatTableDataSource<Usluga>;
   subscription!: Subscription;
 

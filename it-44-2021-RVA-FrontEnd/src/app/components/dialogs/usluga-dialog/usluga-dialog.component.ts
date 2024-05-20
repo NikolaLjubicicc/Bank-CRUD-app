@@ -1,4 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Filijala } from 'src/app/models/filijala';
+import { KorisnikUsluge } from 'src/app/models/kornisnik-usluge';
+import { Usluga } from 'src/app/models/usluga';
+import { FilijalaService } from 'src/app/services/filijala.service';
+import { KorisnikUslugeService } from 'src/app/services/korisnik-usluge.service';
+import { UslugaService } from 'src/app/services/usluga.service';
 
 @Component({
   selector: 'app-usluga-dialog',
@@ -8,62 +16,65 @@ import { Component, OnInit } from '@angular/core';
 
 export class UslugaDialogComponent implements OnInit {
   flag !: number;
-
+  korisniciusluga !: KorisnikUsluge[];
+  filijale !: Filijala[];
   constructor(
     public snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<Usluga>,
     @Inject (MAT_DIALOG_DATA) public data: Usluga,
-    public service:Usluga
-    public dobavljacService:DobavljacService
-  ){
-    ngOnInit(): void{
-      this.UslugaService.getAllUsluga().subscribe(
-        (data) =>{
-          this.usluga=data;
-        }
-      )
-    }
-    public compare(a:any,b:any){
-      return a.id == b.id;
-    }
-
-  public add(){
-    this.service.addUsluga(this.data).subscribe(
+    public uslugaService:UslugaService,
+    public korisnikuslugeService:KorisnikUslugeService,
+    public filijalaService:FilijalaService
+  ){}
+  ngOnInit(): void {
+    this.korisnikuslugeService.getAllKorisnikUsluge().subscribe(
       (data) => {
-        this.snackBar.open(`Uspesno dodata banka sa nazivom: $(this.data.naziv)`,`U redu`,{duration:2500});
+        this.korisniciusluga = data;
       }
-    ),
+    )
+    this.filijalaService.getAllFilijalas().subscribe(
+      (data) => {
+        this.filijale = data;
+      }
+    )
+  }
+  public compare(a:any,b:any){
+    return a.id == b.id;
+  }
+  public addUsluga(): void {
+    this.uslugaService.addUsluga(this.data).subscribe((data) => {
+      this.snackBar.open(`Uspenso dodata usluga: ${this.data.naziv}`,`U redu`,{duration:2500})
+    }),
     (error:Error) => {
       console.log(error.name + ' ' + error.message);
       this.snackBar.open(`Neuspenso dodavanje`, `Zatvori`, {duration:1000});
+    }}
+    public updateUsluga(): void{
+      this.uslugaService.updateUsluga(this.data).subscribe(
+        (data) => {
+          this.snackBar.open(`Uspesno azurirana filijal na adresi: ${this.data.naziv}`,`U redu`,{duration:2500});
+        }
+      ),
+      (error:Error) => {
+        console.log(error.name + ' ' + error.message);
+        this.snackBar.open(`Neuspenso azuriranje`, `Zatvori`, {duration:1000});
+      }
+    }
+    public deleteUsluga(){
+      this.uslugaService.deleteUsluga(this.data.id).subscribe(
+        (data) => {
+          this.snackBar.open(`${data}`,`U redu`,{duration:2500});
+        }
+      ),
+      (error:Error) => {
+        console.log(error.name + ' ' + error.message);
+        this.snackBar.open(`Neuspenso brisanje`, `Zatvori`, {duration:1000});
+      }
+    }
+    public cancel(){
+      this.dialogRef.close();
+      this.snackBar.open(`Odustali ste od izmena`,`Zatvori`, {duration:2500});
     }
 
-  }
-  public update(){
-    this.service.updateUsluga(this.data).subscribe(
-      (data) => {
-        this.snackBar.open(`Uspesno azurirana banka sa nazivom: $(this.data.naziv)`,`U redu`,{duration:2500});
-      }
-    ),
-    (error:Error) => {
-      console.log(error.name + ' ' + error.message);
-      this.snackBar.open(`Neuspenso azuriranje`, `Zatvori`, {duration:1000});
-    }
-  }
-  public delete(){
-    this.service.deleteUsluga(this.data.id).subscribe(
-      (data) => {
-        this.snackBar.open(`$(data)`,`U redu`,{duration:2500});
-      }
-    ),
-    (error:Error) => {
-      console.log(error.name + ' ' + error.message);
-      this.snackBar.open(`Neuspenso brisanje`, `Zatvori`, {duration:1000});
-    }
-  }
-  public cancel(){
-    this.dialogRef.close();
-    this.snackBar.open(`Odustali ste od izmena`,`Zatvori`, {duration:2500});
-  }
 
 }

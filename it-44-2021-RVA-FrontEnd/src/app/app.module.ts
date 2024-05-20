@@ -31,6 +31,9 @@ import { MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { FilijalaDialogComponent } from './components/dialogs/filijala-dialog/filijala-dialog.component';
+import { KorisnikUslugeDialogComponent } from './components/dialogs/korisnik-usluge-dialog/korisnik-usluge-dialog.component';
+import { UslugaDialogComponent } from './components/dialogs/usluga-dialog/usluga-dialog.component';
 @NgModule({ 
   declarations: [
     AppComponent,
@@ -41,7 +44,10 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     HomeComponent,
     AuthorComponent,
     AboutComponent,
-    BankaDialogComponent
+    BankaDialogComponent,
+    FilijalaDialogComponent,
+    KorisnikUslugeDialogComponent,
+    UslugaDialogComponent
 
   ],
   imports: [
@@ -65,7 +71,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
