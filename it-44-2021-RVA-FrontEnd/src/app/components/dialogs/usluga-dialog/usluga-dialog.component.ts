@@ -16,22 +16,17 @@ import { UslugaService } from 'src/app/services/usluga.service';
 
 export class UslugaDialogComponent implements OnInit {
   flag !: number;
-  korisniciusluga !: KorisnikUsluge[];
   filijale !: Filijala[];
   constructor(
     public snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<Usluga>,
     @Inject (MAT_DIALOG_DATA) public data: Usluga,
     public uslugaService:UslugaService,
-    public korisnikuslugeService:KorisnikUslugeService,
     public filijalaService:FilijalaService
   ){}
   ngOnInit(): void {
-    this.korisnikuslugeService.getAllKorisnikUsluge().subscribe(
-      (data) => {
-        this.korisniciusluga = data;
-      }
-    )
+  
+    
     this.filijalaService.getAllFilijalas().subscribe(
       (data) => {
         this.filijale = data;
@@ -52,7 +47,7 @@ export class UslugaDialogComponent implements OnInit {
     public updateUsluga(): void{
       this.uslugaService.updateUsluga(this.data).subscribe(
         (data) => {
-          this.snackBar.open(`Uspesno azurirana filijal na adresi: ${this.data.naziv}`,`U redu`,{duration:2500});
+          this.snackBar.open(`Uspesno azurirana usluga sa nazivom: ${this.data.naziv}`,`U redu`,{duration:2500});
         }
       ),
       (error:Error) => {

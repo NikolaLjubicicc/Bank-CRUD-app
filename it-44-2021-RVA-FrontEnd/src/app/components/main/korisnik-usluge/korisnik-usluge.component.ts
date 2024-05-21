@@ -16,7 +16,7 @@ export class KorisnikUslugeComponent implements OnInit,OnDestroy{
   displayedColumns = ['id','ime','prezime','maticniBroj','actions'];
   dataSource!: MatTableDataSource<KorisnikUsluge>;
   subscription!: Subscription;
-
+  parentSelectedKorisnikUsluge !:KorisnikUsluge;
   constructor(private service:KorisnikUslugeService, public dialog:MatDialog){
     
   }
@@ -50,6 +50,9 @@ public openDialog(flag:number,id?:number,ime?:string,prezime?:string,maticniBroj
       }
     }
   )
+}
+public selectRow(row:KorisnikUsluge){
+  this.parentSelectedKorisnikUsluge = row;
 }
 
 }

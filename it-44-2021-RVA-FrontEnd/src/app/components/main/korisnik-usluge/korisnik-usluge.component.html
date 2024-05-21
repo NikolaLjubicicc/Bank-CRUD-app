@@ -42,8 +42,16 @@
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row
       style="cursor: pointer;"
-      *matRowDef="let row; columns: displayedColumns">
+      *matRowDef="let row; columns: displayedColumns" 
+      (click)="selectRow(row)">
     </mat-row>
   </mat-table>
+</div>
+
+<div class="container mat-elevation-z8">
+      <app-usluga *ngIf="parentSelectedKorisnikUsluge"
+      [childSelectedKorisnikUsluge]="parentSelectedKorisnikUsluge">
+        
+      </app-usluga>
 </div>
   

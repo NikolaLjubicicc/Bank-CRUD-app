@@ -34,6 +34,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { FilijalaDialogComponent } from './components/dialogs/filijala-dialog/filijala-dialog.component';
 import { KorisnikUslugeDialogComponent } from './components/dialogs/korisnik-usluge-dialog/korisnik-usluge-dialog.component';
 import { UslugaDialogComponent } from './components/dialogs/usluga-dialog/usluga-dialog.component';
+import { MatSortModule } from '@angular/material/sort';
+import {MatPaginatorModule} from '@angular/material/paginator';
 @NgModule({ 
   declarations: [
     AppComponent,
@@ -72,6 +74,8 @@ import { UslugaDialogComponent } from './components/dialogs/usluga-dialog/usluga
     MatNativeDateModule,
     MatSelectModule,
     MatCheckboxModule,
+    MatSortModule,
+    MatPaginatorModule
 
   ],
   providers: [],

@@ -33,7 +33,7 @@
 
       <ng-container matColumnDef="korisnikusluge">
         <mat-header-cell *matHeaderCellDef>Korisnik usluge</mat-header-cell>
-        <mat-cell *matCellDef="let row">{{ row.korisnikusluge?.maticniBroj }}</mat-cell>
+        <mat-cell *matCellDef="let row">{{ row.korisnikusluge.maticniBroj }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="filijala">
@@ -48,10 +48,10 @@
           </button>
         </mat-header-cell>
         <mat-cell *matCellDef="let row; let i = index">
-          <button mat-icon-button color="primary" (click)="openDialog(2,row.id,row.naziv,row.opisUsluge,row.datumUgovora,row.provizija,row.korisnikusluge,row.filijala)">
+          <button mat-icon-button color="primary" (click)="openDialog(2,row.id,row.naziv,row.opisUsluge,row.datumUgovora,row.provizija,row.filijala)">
             <mat-icon color="primary" aria-label="Edit" >edit</mat-icon>
           </button>
-          <button mat-icon-button color="primary" (click)="openDialog(3,row.id,row.naziv,row.opisUsluge,row.datumUgovora,row.provizija,row.korisnikusluge,row.filijala)">
+          <button mat-icon-button color="primary" (click)="openDialog(3,row.id,row.naziv,row.opisUsluge,row.datumUgovora,row.provizija,row.filijala)">
             <mat-icon color= "warn" aria-label="Delete">delete</mat-icon>
           </button>
         </mat-cell>

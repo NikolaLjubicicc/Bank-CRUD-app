@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { USLUGA_URL } from '../constants';
+import { KORISNIKUSLUGE_URL, USLUGA_URL } from '../constants';
 import { Usluga } from '../models/usluga';
 
 @Injectable({
@@ -13,6 +13,10 @@ export class UslugaService {
   
   public getAllUslugas():Observable<any>{
     return this.httpClient.get(`${USLUGA_URL}`);
+  }
+
+  public getUslugeByKorisnikUsluge(korisnikuslugeId:number):Observable <any>{
+    return this.httpClient.get(`${USLUGA_URL}/korisnikusluge/${korisnikuslugeId}`);
   }
 
   public addUsluga(usluga:Usluga):Observable<any>{

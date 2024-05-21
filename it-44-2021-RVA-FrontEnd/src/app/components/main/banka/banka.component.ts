@@ -1,11 +1,13 @@
 import { ParseFlags } from '@angular/compiler';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
 import { Banka } from 'src/app/models/banka';
 import { BankaService } from 'src/app/services/banka.service';
 import { BankaDialogComponent } from '../../dialogs/banka-dialog/banka-dialog.component';
+import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-banka',
@@ -16,6 +18,9 @@ export class BankaComponent implements OnInit, OnDestroy{
   displayedColumns = ['id','naziv','kontakt','pib','actions'];
   dataSource!: MatTableDataSource<Banka>;
   subscription!: Subscription;
+
+  @ViewChild(MatSort,{static:false}) sort!:MatSort;
+  @ViewChild(MatPaginator,{static:false}) paginator!:MatPaginator;
 
   constructor(private service:BankaService, public dialog:MatDialog){
     
@@ -34,6 +39,8 @@ public loadData(){
     (data) => {
       //console.log(data);
       this.dataSource = new MatTableDataSource(data);
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
     }
   ),
   (error: Error) => {
@@ -51,5 +58,11 @@ public openDialog(flag:number,id?:number,naziv?:string,kontakt?:string,pib?:numb
       }
     }
   )
-}
+ }
+public applyFilter(filter:any){
+  filter = filter.target.value;
+  filter = filter.trim();
+  filter = filter .toLocaleLowerCase();
+  this.dataSource.filter = filter;
+ }
 }

@@ -34,10 +34,10 @@
         </button>
       </mat-header-cell>
       <mat-cell *matCellDef="let row; let i = index">
-        <button mat-icon-button color="primary" (click)="openDialog(2,row.adresa,row.brojPultova,row.posedujeSef,row.banka)">
+        <button mat-icon-button color="primary" (click)="openDialog(2,row.id,row.adresa,row.brojPultova,row.posedujeSef,row.banka)">
           <mat-icon color="primary" aria-label="Edit" >edit</mat-icon>
         </button>
-        <button mat-icon-button color="primary" (click)="openDialog(3,row.adresa,row.brojPultova,row.posedujeSef,row.banka)">
+        <button mat-icon-button color="primary" (click)="openDialog(3,row.id,row.adresa,row.brojPultova,row.posedujeSef,row.banka)">
           <mat-icon color= "warn" aria-label="Delete">delete</mat-icon>
         </button>
       </mat-cell>
@@ -46,7 +46,7 @@
     <mat-row
       style="cursor: pointer;"
       *matRowDef="let row; columns: displayedColumns"
-      (click)="selectRow(row)">
+      >
     </mat-row>
   </mat-table>
 </div>

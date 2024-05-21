@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
@@ -14,13 +14,16 @@ import { UslugaDialogComponent } from '../../dialogs/usluga-dialog/usluga-dialog
   templateUrl: './usluga.component.html',
   styleUrls: ['./usluga.component.css']
 })
-export class UslugaComponent implements OnInit,OnDestroy{
-  displayedColumns = ['id','naziv','opisUsluge','datumUgovora','provizija','korisnikusluge','filijala','actions'];
+export class UslugaComponent implements OnInit,OnDestroy,OnChanges{
+  displayedColumns = ['id','naziv','opisUsluge','datumUgovora','provizija','filijala','actions'];
   dataSource!: MatTableDataSource<Usluga>;
   subscription!: Subscription;
-
+  @Input() childSelectedKorisnikUsluge !: KorisnikUsluge;
   constructor(private service:UslugaService, public dialog:MatDialog){
     
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    this.loadData();
   }
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
@@ -32,9 +35,9 @@ export class UslugaComponent implements OnInit,OnDestroy{
 
 
 public loadData(){
- this.subscription = this.service.getAllUslugas().subscribe(
+ this.subscription = this.service.getUslugeByKorisnikUsluge(this.childSelectedKorisnikUsluge.id).subscribe(
     (data) => {
-      //console.log(data);
+      
       this.dataSource = new MatTableDataSource(data);
     }
   ),
@@ -43,8 +46,8 @@ public loadData(){
   }
  }
 
-public openDialog(flag:number,id?:number,naziv?:string,datumUgovora?:Date,opisUsluge?:string,provizija?:number,korisnikusluge?:KorisnikUsluge,filijala?:Filijala){
-  const dialogRef = this.dialog.open(UslugaDialogComponent, {data:{id,naziv,datumUgovora,opisUsluge,provizija,korisnikusluge,filijala}});
+public openDialog(flag:number,id?:number,naziv?:string,datumUgovora?:Date,opisUsluge?:string,provizija?:number,filijala?:Filijala){
+  const dialogRef = this.dialog.open(UslugaDialogComponent, {data:{id,naziv,datumUgovora,opisUsluge,provizija,filijala}});
   dialogRef.componentInstance.flag = flag;
   dialogRef.afterClosed().subscribe(
     (result) => {

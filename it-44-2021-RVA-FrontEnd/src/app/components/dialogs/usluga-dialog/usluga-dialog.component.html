@@ -25,26 +25,17 @@
      <div class="form">
       <mat-form-field>
           <input matInput placeholder="provizija" name="provizija" [disabled]="flag==3" [(ngModel)]="data.provizija" required />
+          <span matSuffix>RSD</span>
       </mat-form-field>
      </div>
-
-     <div class="form">
-        <mat-select [compareWith]="compare" placeholder="KorisnikUsluge" name="KorisnikUsluge" [disabled]="flag==3" [(ngModel)]="data.korisnikusluge" required>
-            <mat-option *ngFor="let korisnikusluge of korisniciusluga" [value]="korisnikusluge">
-                {{korisnikusluge.maticniBroj}}
-            </mat-option>
-        </mat-select>
-   </div>
    <div class="form">
     <mat-select [compareWith]="compare" placeholder="filijala" name="filijala" [disabled]="flag==3" [(ngModel)]="data.filijala" required>
-        <mat-option *ngFor="let filijala usluge of filijale" [value]="filijala">
+        <mat-option *ngFor="let filijala of filijale" [value]="filijala">
             {{filijala.adresa}}
         </mat-option>
     </mat-select>
 </div>
 </form>
-
-
 
   <div class="mat-dialog-actions">
       <button matButton *ngIf="flag == 1" type="submit" mat-dialog-close="1" [disabled]="!formControl.valid" (click)="addUsluga()">Sačuvaj</button>
