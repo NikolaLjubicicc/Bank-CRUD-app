@@ -1,24 +1,28 @@
-<p>usluga works!</p>
 <mat-toolbar color="accent">
     <span class="title-center">Usluga</span>
   </mat-toolbar>
   
   <div class="container mat-elavation-z8">
-    <mat-table [dataSource]="dataSource" class="mat-cell">
+    <div class="filter-field">
+      <mat-form-field subscriptSizing="dynamic">
+        <input matInput placeholder="Pretraga .." name="Filter" (keyup)="applyFilter($event)"/>
+      </mat-form-field>
+    </div>
+    <mat-table matSort [dataSource]="dataSource" class="mat-cell">
       <!--ID-->
       <ng-container matColumnDef="id">
-        <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+        <mat-header-cell mat-sort-header *matHeaderCellDef>ID</mat-header-cell>
         <mat-cell *matCellDef="let row">{{ row.id }}</mat-cell>
       </ng-container>
       
       <!--Naziv-->
       <ng-container matColumnDef="naziv">
-        <mat-header-cell *matHeaderCellDef>NAZIV</mat-header-cell>
+        <mat-header-cell mat-sort-header *matHeaderCellDef>NAZIV</mat-header-cell>
         <mat-cell *matCellDef="let row">{{ row.naziv }}</mat-cell>
       </ng-container>
       
       <ng-container matColumnDef="datumUgovora">
-        <mat-header-cell *matHeaderCellDef>Datum ugovora</mat-header-cell>
+        <mat-header-cell mat-sort-header *matHeaderCellDef>Datum ugovora</mat-header-cell>
         <mat-cell *matCellDef="let row">  {{row.datumUgovora | date:'dd.MM.yyyy'}} </mat-cell>
       </ng-container>
       <ng-container matColumnDef="opisUsluge">
@@ -29,11 +33,6 @@
       <ng-container matColumnDef="provizija">
         <mat-header-cell *matHeaderCellDef>Provizija</mat-header-cell>
         <mat-cell *matCellDef="let row">{{ row.provizija }}</mat-cell>
-      </ng-container>
-
-      <ng-container matColumnDef="korisnikusluge">
-        <mat-header-cell *matHeaderCellDef>Korisnik usluge</mat-header-cell>
-        <mat-cell *matCellDef="let row">{{ row.korisnikusluge.maticniBroj }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="filijala">
@@ -48,10 +47,10 @@
           </button>
         </mat-header-cell>
         <mat-cell *matCellDef="let row; let i = index">
-          <button mat-icon-button color="primary" (click)="openDialog(2,row.id,row.naziv,row.opisUsluge,row.datumUgovora,row.provizija,row.filijala)">
+          <button mat-icon-button color="primary" (click)="openDialog(2,row.id,row.naziv,row.datumUgovora,row.opisUsluge,row.provizija,row.filijala)">
             <mat-icon color="primary" aria-label="Edit" >edit</mat-icon>
           </button>
-          <button mat-icon-button color="primary" (click)="openDialog(3,row.id,row.naziv,row.opisUsluge,row.datumUgovora,row.provizija,row.filijala)">
+          <button mat-icon-button color="primary" (click)="openDialog(3,row.id,row.naziv,row.datumUgovora,row.opisUsluge,row.provizija,row.filijala)">
             <mat-icon color= "warn" aria-label="Delete">delete</mat-icon>
           </button>
         </mat-cell>
@@ -62,5 +61,6 @@
         *matRowDef="let row; columns: displayedColumns">
       </mat-row>
     </mat-table>
+    <mat-paginator [length]="20" [pageSize]="6" [pageSizeOptions]="[3,6,9,12]"></mat-paginator>
   </div>
     

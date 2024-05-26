@@ -30,20 +30,22 @@ public class Usluga implements Serializable{
 	private Filijala filijala;
 	
 	@ManyToOne
-	@JoinColumn(name = "korisnik")
+	@JoinColumn(name = "korisnikusluge")
 	private KorisnikUsluge korisnikusluge;
 	
 	public Usluga() {
 		
 	}
 	
-	public Usluga(int id, String naziv, String opisUsluge, Date datumUgovora, double provizija) {
+	public Usluga(int id, String naziv, String opisUsluge, Date datumUgovora, double provizija,Filijala filijala,KorisnikUsluge korisnikusluge) {
 		super();
 		this.id = id;
 		this.naziv = naziv;
 		this.opisUsluge = opisUsluge;
 		this.datumUgovora = datumUgovora;
 		this.provizija = provizija;
+		this.filijala = filijala;
+		this.korisnikusluge = korisnikusluge;
 	}
 	public int getId() {
 		return id;

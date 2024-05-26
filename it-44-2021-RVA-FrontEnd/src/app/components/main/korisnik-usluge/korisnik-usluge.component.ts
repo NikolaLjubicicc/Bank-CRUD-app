@@ -1,11 +1,12 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
 import { KorisnikUsluge } from 'src/app/models/kornisnik-usluge';
 import { KorisnikUslugeService } from 'src/app/services/korisnik-usluge.service';
-import { BankaDialogComponent } from '../../dialogs/banka-dialog/banka-dialog.component';
 import { KorisnikUslugeDialogComponent } from '../../dialogs/korisnik-usluge-dialog/korisnik-usluge-dialog.component';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-korisnik-usluge',
@@ -17,6 +18,9 @@ export class KorisnikUslugeComponent implements OnInit,OnDestroy{
   dataSource!: MatTableDataSource<KorisnikUsluge>;
   subscription!: Subscription;
   parentSelectedKorisnikUsluge !:KorisnikUsluge;
+  @ViewChild(MatSort,{static:false}) sort!:MatSort;
+  @ViewChild(MatPaginator,{static:false}) paginator!:MatPaginator;
+
   constructor(private service:KorisnikUslugeService, public dialog:MatDialog){
     
   }
@@ -33,6 +37,8 @@ public loadData(){
  this.subscription = this.service.getAllKorisnikUsluge().subscribe(
     (data) => {
       this.dataSource = new MatTableDataSource(data);
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
     }
   ),
   (error: Error) => {
@@ -54,5 +60,11 @@ public openDialog(flag:number,id?:number,ime?:string,prezime?:string,maticniBroj
 public selectRow(row:KorisnikUsluge){
   this.parentSelectedKorisnikUsluge = row;
 }
+public applyFilter(filter:any){
+  filter = filter.target.value;
+  filter = filter.trim();
+  filter = filter .toLocaleLowerCase();
+  this.dataSource.filter = filter;
+ }
 
 }

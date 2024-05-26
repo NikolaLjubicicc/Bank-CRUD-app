@@ -46,7 +46,7 @@ export class UslugaDialogComponent implements OnInit {
     }}
     public updateUsluga(): void{
       this.uslugaService.updateUsluga(this.data).subscribe(
-        (data) => {
+        (data) => { console.log(this.data.korisnikusluge.id);
           this.snackBar.open(`Uspesno azurirana usluga sa nazivom: ${this.data.naziv}`,`U redu`,{duration:2500});
         }
       ),

@@ -12,5 +12,5 @@ public interface UslugaService extends CrudService<Usluga> {
 	List<Usluga> getUslugabyProvizija(double provizija);
 	
 	List<Usluga> findByForeignKey(Filijala filijala);
-	List<Usluga> findByForeignKey(KorisnikUsluge korisnik);
+	List<Usluga> findByForeignKey(KorisnikUsluge korisnikusluge);
 }

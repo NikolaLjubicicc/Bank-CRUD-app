@@ -6,19 +6,22 @@
   <form class="mat-dialog-content" #formControl="ngForm">
      <div class="form">
       <mat-form-field>
-          <input matInput placeholder="Naziv" name="Naziv" [disabled]="flag==3" [(ngModel)]="data.naziv" required />
+          <input matInput placeholder="naziv" name="naziv" [disabled]="flag==3" [(ngModel)]="data.naziv" required />
       </mat-form-field>
      </div>
 
      <div class="form">
-      <mat-form-field>
-          <input matInput placeholder="datumUgovora" name="datumUgovora" [disabled]="flag==3" [(ngModel)]="data.datumUgovora" required >
-      </mat-form-field>
-     </div>
+        <mat-form-field>
+            <input matInput placeholder="opisUsluge" name="opisUsluge" [disabled]="flag==3" [(ngModel)]="data.opisUsluge" required />
+        </mat-form-field>
+       </div>
+
 
      <div class="form">
       <mat-form-field>
-          <input matInput placeholder="opisUsluge" name="opisUsluge" [disabled]="flag==3" [(ngModel)]="data.opisUsluge" required />
+          <input matInput [matDatepicker]="datumUgovora" placeholder="datumUgovora" name="datumUgovora" [disabled]="flag==3" [(ngModel)]="data.datumUgovora" required >
+          <mat-datepicker-toggle matSuffix [for]="datumUgovora"></mat-datepicker-toggle>
+          <mat-datepicker #datumUgovora></mat-datepicker>
       </mat-form-field>
      </div>
 
@@ -35,6 +38,7 @@
         </mat-option>
     </mat-select>
 </div>
+
 </form>
 
   <div class="mat-dialog-actions">

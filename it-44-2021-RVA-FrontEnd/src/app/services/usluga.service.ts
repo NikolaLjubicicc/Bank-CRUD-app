@@ -24,6 +24,8 @@ export class UslugaService {
   }
   
   public updateUsluga(usluga:Usluga):Observable<any>{
+    console.log("OVO SAD PRINTAMO   " + usluga.korisnikusluge.ime);
+    console.log("OVO SAD PRINTAMO " + JSON.stringify(usluga));
     return this.httpClient.put(`${USLUGA_URL}/id/${usluga.id}`,usluga);
   }
 

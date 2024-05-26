@@ -3,14 +3,19 @@
 </mat-toolbar>
 
 <div class="container mat-elavation-z8">
-  <mat-table [dataSource]="dataSource" class="mat-cell">
+  <div class="filter-field">
+    <mat-form-field subscriptSizing="dynamic">
+      <input matInput placeholder="Pretraga .." name="Filter" (keyup)="applyFilter($event)"/>
+    </mat-form-field>
+  </div>
+  <mat-table matSort [dataSource]="dataSource" class="mat-cell">
     <ng-container matColumnDef="id">
-      <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+      <mat-header-cell mat-sort-header *matHeaderCellDef>ID</mat-header-cell>
       <mat-cell *matCellDef="let row">{{ row.id }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="adresa">
-      <mat-header-cell *matHeaderCellDef>Adresa</mat-header-cell>
+      <mat-header-cell mat-sort-header *matHeaderCellDef>Adresa</mat-header-cell>
       <mat-cell *matCellDef="let row">{{ row.adresa }}</mat-cell>
     </ng-container>
  
@@ -23,7 +28,7 @@
       <mat-cell *matCellDef="let row">{{ row.posedujeSef ? 'Da' : 'Ne' }}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="banka">
-      <mat-header-cell *matHeaderCellDef>banka</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>Banka</mat-header-cell>
       <mat-cell *matCellDef="let row">{{ row.banka.naziv }}</mat-cell>
     </ng-container>
     <!-- Action Buttons -->
@@ -49,6 +54,7 @@
       >
     </mat-row>
   </mat-table>
+  <mat-paginator [length]="20" [pageSize]="6" [pageSizeOptions]="[3,6,9,12]"></mat-paginator>
 </div>
 
   
