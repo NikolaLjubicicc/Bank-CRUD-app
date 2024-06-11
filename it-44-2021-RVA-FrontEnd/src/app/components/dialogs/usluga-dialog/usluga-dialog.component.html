@@ -32,7 +32,7 @@
       </mat-form-field>
      </div>
    <div class="form">
-    <mat-select [compareWith]  placeholder="filijala" name="filijala" [disabled]="flag==3" [(ngModel)]="data.filijala" required>
+    <mat-select [compareWith]="compare"  placeholder="filijala" name="filijala" [disabled]="flag==3" [(ngModel)]="data.filijala" required>
         <mat-option *ngFor="let filijala of filijale" [value]="filijala">
             {{filijala.adresa}}
         </mat-option>
