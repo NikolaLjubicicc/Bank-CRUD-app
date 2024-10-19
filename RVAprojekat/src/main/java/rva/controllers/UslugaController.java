@@ -70,9 +70,6 @@ public class UslugaController {
 	@PutMapping("/usluga/id/{id}")
 	public ResponseEntity<?> updateUsluga(@RequestBody Usluga usluga, @PathVariable int id){
 		
-		KorisnikUsluge k = usluga.getKorisnikUsluge();
-		System.out.println("ID KORISNIKA USLUGE  -  " + usluga.getNaziv());
-		System.out.println("ID KORISNIKA USLUGE  -  " + usluga.getKorisnikUsluge());
 		Optional<Usluga> updatedUsluga = service.update(usluga, id);
 		if(updatedUsluga.isPresent())
 		{
@@ -111,8 +108,7 @@ public class UslugaController {
 			if(!usluga.isEmpty()) {
 				return ResponseEntity.ok(usluga);
 			} else {
-				//return ResponseEntity.status(404).body("Resource with requested foreign key:"+foreignKey+"do not exist");
-				return null;
+				return ResponseEntity.status(404).body("Resource with requested foreign key:"+foreignKey+"do not exist");
 			}
 		}
 		return ResponseEntity.status(400).body("Foreign key: " + foreignKey + " does not exist");

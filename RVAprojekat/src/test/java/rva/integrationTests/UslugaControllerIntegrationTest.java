@@ -183,7 +183,7 @@ class UslugaControllerIntegrationTest {
 		assertEquals(200, statusCode );
 		assertNotNull(usluge.get(0));
 		for(Usluga u: usluge) {
-			assertTrue(u.getKorisnikUsluge().getId() == 1);
+			assertTrue(u.getKorisnikusluge().getId() == 1);
 		}
 	}
 	

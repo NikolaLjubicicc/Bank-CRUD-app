@@ -37,15 +37,14 @@ public class Usluga implements Serializable{
 		
 	}
 	
-	public Usluga(int id, String naziv, String opisUsluge, Date datumUgovora, double provizija,Filijala filijala,KorisnikUsluge korisnikusluge) {
+	public Usluga(int id, String naziv, String opisUsluge, Date datumUgovora, double provizija) {
 		super();
 		this.id = id;
 		this.naziv = naziv;
 		this.opisUsluge = opisUsluge;
 		this.datumUgovora = datumUgovora;
 		this.provizija = provizija;
-		this.filijala = filijala;
-		this.korisnikusluge = korisnikusluge;
+
 	}
 	public int getId() {
 		return id;
@@ -83,10 +82,10 @@ public class Usluga implements Serializable{
 	public void setFilijala(Filijala filijala) {
 		this.filijala = filijala;
 	}
-	public KorisnikUsluge getKorisnikUsluge() {
+	public KorisnikUsluge getKorisnikusluge() {
 		return korisnikusluge;
 	}
-	public void setKorisnikUsluge(KorisnikUsluge korisnikusluge) {
+	public void setKorisnikusluge(KorisnikUsluge korisnikusluge) {
 		this.korisnikusluge = korisnikusluge;
 	}
 
