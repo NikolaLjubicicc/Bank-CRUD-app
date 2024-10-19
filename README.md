@@ -5,11 +5,11 @@ Korisnici aplikacije imaju mogućnost da modifikuju ili obrišu postojeće podat
 
 Aplikacija je razvijena koristeći Spring framework za backend i Angular za frontend, dok se podaci čuvaju u PostgreSQL bazi podataka.
 
-Aplikacija koristi sledeće funkcionalnosti:
+### Aplikacija koristi sledeće funkcionalnosti:
 
-Dodavanje novih usluga, korisnika, filijala i banaka.
-Izmena postojećih entiteta (usluge, korisnici, filijale, banke).
-Brisanje entiteta iz sistema.
-Pregled i filtriranje postojećih entiteta.
+- Dodavanje novih usluga, korisnika, filijala i banaka.
+- Izmena postojećih entiteta (usluge, korisnici, filijale, banke).
+- Brisanje entiteta iz sistema.
+- Pregled i filtriranje postojećih entiteta.
 
 Nikola Ljubičić
