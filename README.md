@@ -1,4 +1,4 @@
-#Bank-CRUD-app
+# Bank-CRUD-app
 Ova aplikacija predstavlja CRUD sistem razvijen za upravljanje bankarskim entitetima kao što su banke, filijale, korisnici i usluge.
 Omogućava dodavanje novih usluga koje banka pruža, kreiranje novih korisnika i filijala, kao i upravljanje bankama. 
 Korisnici aplikacije imaju mogućnost da modifikuju ili obrišu postojeće podatke o bankama, filijalama, korisnicima i uslugama.
